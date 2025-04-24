@@ -14,7 +14,7 @@ namespace Scheduler.Services.Tests
             // We need an instance of the service we are testing
             // This line will initially cause a compile error (Red) because ServiceService doesn't exist
             // Let's anticipate its name and how we'll inject the context
-            var serviceService = new ServiceManager(context); // Creating an instance
+            var serviceManager = new ServiceManager(context); // Creating an instance
 
             // Prepare the data for the service to be added
             var userId = Guid.NewGuid().ToString(); // Dummy User Id for the provider
@@ -25,7 +25,7 @@ namespace Scheduler.Services.Tests
 
             // Act: Perform the action being tested
             // We will call a method on the service to add the service
-            await serviceService.AddAsync(userId, serviceName, serviceDescription, serviceDuration, servicePrice); // Using the instance
+            await serviceManager.AddAsync(userId, serviceName, serviceDescription, serviceDuration, servicePrice); // Using the instance
 
             // Assert: Check if the action had the expected result
             // We expect the service to be in the database after adding it

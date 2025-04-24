@@ -5,7 +5,7 @@ namespace Scheduler.Services.Tests
 {
     public abstract class TestBase : IDisposable
     {
-        protected ApplicationDbContext CreateDbContext()
+        protected static ApplicationDbContext CreateDbContext()
         {
             // Use o provedor em memória com um nome de banco de dados único para cada teste
             var optionsBuilder = new DbContextOptionsBuilder<ApplicationDbContext>()

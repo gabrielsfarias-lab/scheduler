@@ -1,7 +1,5 @@
 ﻿using Scheduler.Infra; // Para ApplicationDbContext
 using Scheduler.Core; // Para entidades
-using System.Threading.Tasks; // Para metodos async
-using System; // Para Guid (se sua entidade usar Guid)
 
 namespace Scheduler.Services
 {
