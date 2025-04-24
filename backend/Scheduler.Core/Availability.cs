@@ -10,8 +10,8 @@ namespace Scheduler.Core
         public TimeSpan EndTime { get; set; } // End time of the availability block
 
         // Foreign Key to the Service Provider (ApplicationUser)
-        public string UserId { get; set; }
+        public string? UserId { get; set; }
         // Navigation property
-        public ApplicationUser User { get; set; }
+        public ApplicationUser? User { get; set; }
     }
 }

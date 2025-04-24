@@ -10,9 +10,9 @@ namespace Scheduler.Core
         // public string ContactPhone { get; set; }
 
         // Navigation properties for entities owned by this provider
-        public ICollection<Service> Services { get; set; }
-        public ICollection<Availability> Availability { get; set; }
-        public ICollection<BlockedSlot> BlockedSlots { get; set; }
-        public ICollection<Appointment> Appointments { get; set; } // Appointments where this user is the provider
+        public ICollection<Service>? Services { get; set; }
+        public ICollection<Availability>? Availability { get; set; }
+        public ICollection<BlockedSlot>? BlockedSlots { get; set; }
+        public ICollection<Appointment>? Appointments { get; set; } // Appointments where this user is the provider
     }
 }

@@ -9,8 +9,8 @@ namespace Scheduler.Core
         public TimeSpan Duration { get; set; } // Duration of the blocked slot
 
         // Foreign Key to the Service Provider (ApplicationUser)
-        public string UserId { get; set; }
+        public string? UserId { get; set; }
         // Navigation property
-        public ApplicationUser User { get; set; }
+        public ApplicationUser? User { get; set; }
     }
 }
