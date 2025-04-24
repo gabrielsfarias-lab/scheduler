@@ -1,9 +1,20 @@
+using Microsoft.AspNetCore.Identity;
+using Microsoft.EntityFrameworkCore;
+using Scheduler.Core;
+using Scheduler.Infra;
+
 var builder = WebApplication.CreateBuilder(args);
 
 // Add services to the container.
 // Learn more about configuring Swagger/OpenAPI at https://aka.ms/aspnetcore/swashbuckle
 builder.Services.AddEndpointsApiExplorer();
 builder.Services.AddSwaggerGen();
+var connectionString = builder.Configuration.GetConnectionString("DefaultConnection");
+builder.Services.AddDbContext<ApplicationDbContext>(options =>
+    options.UseSqlite(connectionString));
+builder.Services.AddIdentity<ApplicationUser, IdentityRole>() // Use sua classe de usuário customizada (Prestador)
+    .AddEntityFrameworkStores<ApplicationDbContext>() // Diga ao Identity para usar seu DbContext
+    .AddDefaultTokenProviders();
 
 var app = builder.Build();
 
