@@ -1,4 +1,5 @@
 using Microsoft.AspNetCore.Identity;
+
 namespace Scheduler.Core
 {
     // Represents the Service Provider who uses the scheduling system

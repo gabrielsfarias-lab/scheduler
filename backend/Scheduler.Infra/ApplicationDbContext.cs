@@ -4,13 +4,9 @@ using Scheduler.Core;
 
 namespace Scheduler.Infra
 {
-    public class ApplicationDbContext : IdentityDbContext<ApplicationUser>
+    public class ApplicationDbContext(DbContextOptions<ApplicationDbContext> options)
+        : IdentityDbContext<ApplicationUser>(options)
     {
-        public ApplicationDbContext(DbContextOptions<ApplicationDbContext> options)
-            : base(options)
-        {
-        }
-
         // DbSet for core scheduling entities
         public DbSet<Service> Services { get; set; }
         public DbSet<Client> Clients { get; set; }
@@ -25,37 +21,43 @@ namespace Scheduler.Infra
 
             // Configure relationships using the Fluent API
             // Configure the relationship between Service and ApplicationUser (Provider)
-            builder.Entity<Service>()
+            builder
+                .Entity<Service>()
                 .HasOne(s => s.User) // A Service has one User (Provider)
                 .WithMany(u => u.Services) // A User (Provider) has many Services
                 .HasForeignKey(s => s.UserId); // The foreign key is UserId in Service
 
             // Configure the relationship between Availability and ApplicationUser (Provider)
-            builder.Entity<Availability>()
+            builder
+                .Entity<Availability>()
                 .HasOne(a => a.User)
                 .WithMany(u => u.Availability)
                 .HasForeignKey(a => a.UserId);
 
             // Configure the relationship between BlockedSlot and ApplicationUser (Provider)
-            builder.Entity<BlockedSlot>()
+            builder
+                .Entity<BlockedSlot>()
                 .HasOne(bs => bs.User)
                 .WithMany(u => u.BlockedSlots)
                 .HasForeignKey(bs => bs.UserId);
 
             // Configure the relationship between Appointment and Service
-            builder.Entity<Appointment>()
+            builder
+                .Entity<Appointment>()
                 .HasOne(a => a.Service)
                 .WithMany(s => s.Appointments)
                 .HasForeignKey(a => a.ServiceId);
 
             // Configure the relationship between Appointment and Client
-            builder.Entity<Appointment>()
+            builder
+                .Entity<Appointment>()
                 .HasOne(a => a.Client)
                 .WithMany(c => c.Appointments)
                 .HasForeignKey(a => a.ClientId);
 
             // Configure the relationship between Appointment and ApplicationUser (Provider)
-            builder.Entity<Appointment>()
+            builder
+                .Entity<Appointment>()
                 .HasOne(a => a.User) // An Appointment has one User (Provider)
                 .WithMany(u => u.Appointments) // A User (Provider) has many Appointments they are scheduled with
                 .HasForeignKey(a => a.UserId);

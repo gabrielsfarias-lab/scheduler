@@ -8,8 +8,10 @@ namespace Scheduler.Services.Tests
         protected static ApplicationDbContext CreateDbContext()
         {
             // Use o provedor em memória com um nome de banco de dados único para cada teste
-            var optionsBuilder = new DbContextOptionsBuilder<ApplicationDbContext>()
-                .UseInMemoryDatabase(databaseName: Guid.NewGuid().ToString());
+            var optionsBuilder =
+                new DbContextOptionsBuilder<ApplicationDbContext>().UseInMemoryDatabase(
+                    databaseName: Guid.NewGuid().ToString()
+                );
 
             var context = new ApplicationDbContext(optionsBuilder.Options);
 

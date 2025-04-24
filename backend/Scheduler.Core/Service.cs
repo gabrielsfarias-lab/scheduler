@@ -12,6 +12,7 @@ namespace Scheduler.Core
 
         // Foreign Key to the Service Provider (ApplicationUser)
         public string? UserId { get; set; }
+
         // Navigation property
         public ApplicationUser? User { get; set; }
 

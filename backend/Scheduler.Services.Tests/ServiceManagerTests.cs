@@ -1,5 +1,5 @@
-using Scheduler.Core;
 using Microsoft.EntityFrameworkCore;
+using Scheduler.Core;
 
 namespace Scheduler.Services.Tests
 {
@@ -18,9 +18,17 @@ namespace Scheduler.Services.Tests
             var serviceDuration = 30;
             var servicePrice = 50.00m;
 
-            await serviceManager.AddAsync(userId, serviceName, serviceDescription, serviceDuration, servicePrice);
+            await serviceManager.AddAsync(
+                userId,
+                serviceName,
+                serviceDescription,
+                serviceDuration,
+                servicePrice
+            );
 
-            var addedServiceExists = await context.Services.AnyAsync(s => s.UserId == userId && s.Name == serviceName);
+            var addedServiceExists = await context.Services.AnyAsync(s =>
+                s.UserId == userId && s.Name == serviceName
+            );
 
             Assert.True(addedServiceExists);
         }
@@ -41,7 +49,7 @@ namespace Scheduler.Services.Tests
                 Description = "Consulta de 30 minutos.",
                 DurationInMinutes = 30,
                 Price = 80.00m,
-                IsActive = true
+                IsActive = true,
             };
             context.Services.Add(originalService);
             await context.SaveChangesAsync();
